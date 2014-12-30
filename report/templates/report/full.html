@@ -1,0 +1,72 @@
+{% extends 'report/main.html' %}
+
+{% load static from staticfiles %}
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'report/style.css' %}" />
+
+{% block content%}
+      <br/>
+      <br/>
+<div class="jumbotron"align="center">
+        <h3>Select town</h3>
+
+  <div class="row" align="center">
+
+
+
+    <form method="POST" action="/report/full/">{% csrf_token %}
+
+
+       <select name="town" id="town">
+       <option value="" selected="selected">-------</option>
+          <option value="thermi">Thermi (doesn't work)</option>
+          <option value="agios">Agios Nikolaos</option>
+          <option value="serres">Serres</option>
+          <option value="kavala">Kavala</option>          
+          <option value="patra">Patra</option>          
+          <option value="chalkidiki">Chalkidiki</option>
+          <option value="kalamata">Kalamata</option>
+          <!-- <option value="all">All</option> -->
+       </select>
+
+
+        <input type="submit" value="Select" class="btn btn-primary" />
+    </form>
+
+</div>
+      <br/>
+      <br/>
+
+<table border="1">
+   
+  	<tr class="head">
+      	<th>iTravel</th>
+        <th>bluetooth_logger</th>
+      	<th>bluetooth_status</th>
+      	<th>system_time</th>
+      	<th>wan_status</th>
+      	<th>sdcard_status</th>
+
+	 </tr>
+
+    {% for i in full_list %}
+    <tr>
+      <td >{{i.0}}</td>
+      <td >{{i.1}}</td>
+      <td >{{i.2}}</td>
+      <td >{{i.3}}</td>
+      <td >{{i.4}}</td>
+      <td >{{i.5}}</td>
+    </tr>
+    {% endfor %}
+
+
+  </table>
+
+
+</div>     
+   
+
+
+{% endblock %}
